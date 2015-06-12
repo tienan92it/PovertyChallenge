@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="items_left_menu">
+        <item>@string/home_menu_item</item>
+        <item>@string/notifications_menu_item</item>
+        <item>@string/social_media_menu_item</item>
+        <item>@string/group_contacts_menu_item</item>
+        <item>@string/fundraising_menu_item</item>
+        <item>@string/admin_menu_item</item>
+    </array>
+    
+    <array name="icons_left_menu">
+        <item>@drawable/menu_home_icon</item>
+        <item>@drawable/menu_notifications_icon</item>
+        <item>@drawable/menu_social_media_icon</item>
+        <item>@drawable/menu_group_contacts_icon</item>
+        <item>@drawable/menu_fundraising_icon</item>
+        <item>@drawable/menu_admin_icon</item>
+    </array>
+
+    <array name="icons_left_menu_highlight">
+        <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+    </array>
+</resources>
