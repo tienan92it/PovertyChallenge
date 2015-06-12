@@ -20,7 +20,8 @@
         android:layout_height="match_parent"
         android:divider="@null"
         android:dividerHeight="0px"
-        android:listSelector="@color/transparent" >
+        android:listSelector="@color/transparent"
+        android:background="@color/Black" >
     </ListView>
 
 </LinearLayout>
