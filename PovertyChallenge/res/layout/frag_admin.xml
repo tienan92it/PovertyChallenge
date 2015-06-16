@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.appable.povertychallenge.widgets.TopBarViewImgImg
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerView"
+        android:gravity="center"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="40dp"
+        android:text="@string/msg_description_admin_1"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/ed_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_description"
+        android:layout_margin="30dp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/str_hint_email" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/str_btn_submit" />
+
+</RelativeLayout>
