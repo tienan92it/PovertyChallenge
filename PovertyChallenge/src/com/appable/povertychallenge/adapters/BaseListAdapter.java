@@ -122,4 +122,18 @@ public abstract class BaseListAdapter<E> extends BaseAdapter implements
 	public void removeEntry(int position) {
 		mEntries.remove(position);
 	}
+	
+	@Override
+	public void insertEntry(int position, E entry) {
+		if (entry != null && position >= 0 && position < mEntries.size()){
+			mEntries.add(position, entry);
+		}
+	}
+	
+	@Override
+	public void insertEntries(int position, ArrayList<E> entries) {
+		if (entries != null && position >= 0 && position < mEntries.size()){
+			mEntries.addAll(position, entries);
+		}
+	}
 }

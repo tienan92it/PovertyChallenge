@@ -10,11 +10,36 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
     
+    <!-- MENU -->
     <string name="home_menu_item">HOME</string>
     <string name="notifications_menu_item">NOTIFICATIONS</string>
     <string name="social_media_menu_item">SOCIAL MEDIA</string>
     <string name="group_contacts_menu_item">GROUP CONTACTS</string>
     <string name="fundraising_menu_item">FUNDRAISING RESOURCES</string>
-    <string name="admin_menu_item">ADMIN</string>
+    <string name="admin_group_info_item">GROUP INFO</string>
+    <string name="leave_group_menu_item">LEAVE GROUP</string>
+    
+    
+    
+    <string name="msg_description_admin_1">Please provide an email address that is associated with your admin account</string>
+    <string name="msg_description_admin_2">Please set up a password for your admin account:</string>
+    <string name="msg_description_admin_3">Please enter your password to log in</string>
+    
+    <string name="str_btn_submit">Submit</string>
+    <string name="str_btn_cancel">Cancel</string>
+    <string name="str_hint_email">Email</string>
+    <string name="str_hint_password">Password</string>
+    <string name="str_hint_confirm_password">Confirm Password</string>
+    
+    <string name="str_view_groups"><u>View Groups</u></string>
+    
+    <string name="question_is_admin">Are you a group admin?</string>
+    <string name="msg_enter_email">Please enter your email:</string>
+    <string name="msg_enter_password">Please enter your password:</string>
+    
+    <string name="error_empty_email">email empty</string>
+    <string name="error_invalid_email">email invalid</string>
+    <string name="error_empty_password">password empty</string>
+    <string name="error_not_match_password">not match password</string>
 
 </resources>

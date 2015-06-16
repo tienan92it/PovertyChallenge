@@ -7,14 +7,13 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp" >
+        android:layout_height="match_parent" >
     </FrameLayout>
 
-    <com.appable.povertychallenge.widgets.TopBarViewImgImg
+    <!-- <com.appable.povertychallenge.widgets.TopBarViewImgImg
         android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="70dp" />
+        android:layout_height="70dp" /> -->
 
     <FrameLayout
         android:id="@+id/content_dialog"

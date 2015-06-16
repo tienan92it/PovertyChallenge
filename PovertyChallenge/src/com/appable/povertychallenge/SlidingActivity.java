@@ -1,5 +1,7 @@
 package com.appable.povertychallenge;
 
+import com.appable.povertychallenge.fragments.AdminFragment;
+import com.appable.povertychallenge.fragments.HomeFragment;
 import com.appable.povertychallenge.fragments.LeftMenuFragment;
 import com.appable.povertychallenge.widgets.AbstractTopBarView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -8,8 +10,10 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,26 +31,44 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class SlidingActivity extends FragmentActivity {
 	private final String TAG = getClass().getName();
-
-	private SlidingMenu slidingMenu;
+	
+	public static final String GROUP_NAME = "group name";
+	
+	private String mGroupName = null;
+	
+	protected Activity mActivity;
+	protected Context mContext;
+	protected SlidingMenu slidingMenu;
 	private int mTitleRes;
 	protected Fragment mFrag;
 	public LeftMenuFragment leftMenuFragment;
-	private AbstractTopBarView headerView;
-	private ImageView btn_menu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		mActivity = this;
+		mContext = this;
+		mGroupName = getIntent().getStringExtra(GROUP_NAME);
+		
+		mFrag = new HomeFragment();
 		setContentView(R.layout.content_frame);
-		setBehindContentView(R.layout.menu_frame);
-		leftMenuFragment = new LeftMenuFragment();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menu_frame, leftMenuFragment).commit();
+				.replace(R.id.content_frame, mFrag).commit();
+
+//		setBehindContentView(R.layout.menu_frame);
+
+//		if (savedInstanceState == null) {
+//			leftMenuFragment = new LeftMenuFragment();
+//			getSupportFragmentManager().beginTransaction()
+//					.replace(R.id.menu_frame, leftMenuFragment).commit();
+//		} else {
+//			leftMenuFragment = (LeftMenuFragment) getSupportFragmentManager()
+//					.findFragmentById(R.id.menu_frame);
+//		}
 
 		initSliding();
 		init();
@@ -61,66 +83,66 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	private void initSliding() {
 		// customize the SlidingMenu
-		slidingMenu = getSlidingMenu();
+		slidingMenu = new SlidingMenu(this);
+//		slidingMenu = getSlidingMenu();
 		slidingMenu.setMode(SlidingMenu.LEFT);
 		slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
 		slidingMenu.setBehindOffsetRes(R.dimen.sliding_offset);
 		slidingMenu.setFadeDegree(0.35f);
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		slidingMenu.setMenu(R.layout.menu_frame);
+		leftMenuFragment = new LeftMenuFragment(mGroupName);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame, leftMenuFragment).commit();
 	}
 
 	private void init() {
 
-		headerView = (AbstractTopBarView) findViewById(R.id.headerView);
-		headerView.initialTopbar("Home", true, false);
-		btn_menu = (ImageView) headerView.getBtnLeft();
-		
-		btn_menu.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				slidingMenu.showMenu();
-			}
-		});
 	}
 
 	public void changeMenu(int position) {
 		Fragment frg = null;
+		Intent intent = null;
 		switch (position) {
 		case 0:
 			Toast.makeText(getBaseContext(), "Home", Toast.LENGTH_SHORT).show();
-			headerView.initialTopbar("Home", true, false);
+			intent = new Intent(mContext, SplashScreenActivity.class);
+			frg = new HomeFragment();
 			break;
 		case 1:
 			Toast.makeText(getBaseContext(), "Notifications",
 					Toast.LENGTH_SHORT).show();
-			headerView.initialTopbar("Notifications", true, false);
 			break;
 		case 2:
 			Toast.makeText(getBaseContext(), "Social Media", Toast.LENGTH_SHORT)
 					.show();
-			headerView.initialTopbar("Social Media", true, false);
 			break;
 		case 3:
 			Toast.makeText(getBaseContext(), "Group Contacts",
 					Toast.LENGTH_SHORT).show();
-			headerView.initialTopbar("Group Contacts", true, false);
 			break;
 		case 4:
 			Toast.makeText(getBaseContext(), "Fundraising resources",
 					Toast.LENGTH_SHORT).show();
-			headerView.initialTopbar("Fundraising resources", true, false);
 			break;
 		case 5:
 			Toast.makeText(getBaseContext(), "Admin", Toast.LENGTH_SHORT)
 					.show();
-			headerView.initialTopbar("Admin", true, false);
+			intent = new Intent(mContext, ListGroupsActivity.class);
+			frg = new AdminFragment();
 			break;
 		default:
 			break;
 		}
-		// pushFragments(frg, false, true);
-		if (leftMenuFragment != null) {
-			leftMenuFragment.changeSelected(position);
+
+		if (frg != null) {
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.content_frame, frg).commit();
+			// pushFragments(frg, false, true);
+			if (leftMenuFragment != null) {
+				leftMenuFragment.changeSelected(position);
+			}
 		}
 	}
 
@@ -135,7 +157,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		// TODO Auto-generated method stub
 		super.onPause();
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		if (slidingMenu.isMenuShowing()) {
@@ -143,5 +165,21 @@ public class MainActivity extends SlidingFragmentActivity {
 		} else {
 			super.onBackPressed();
 		}
+	}
+	
+	public void showMenu(){
+		slidingMenu.showMenu();
+	}
+	
+	public void showContent(){
+		slidingMenu.showContent();
+	}
+	
+	public SlidingMenu getSlidingMenu(){
+		return slidingMenu;
+	}
+	
+	public void toggle(){
+		slidingMenu.toggle();
 	}
 }

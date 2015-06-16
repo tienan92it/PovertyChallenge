@@ -7,7 +7,7 @@
         <item>@string/social_media_menu_item</item>
         <item>@string/group_contacts_menu_item</item>
         <item>@string/fundraising_menu_item</item>
-        <item>@string/admin_menu_item</item>
+        <item>@string/leave_group_menu_item</item>
     </array>
     
     <array name="icons_left_menu">
@@ -16,7 +16,7 @@
         <item>@drawable/menu_social_media_icon</item>
         <item>@drawable/menu_group_contacts_icon</item>
         <item>@drawable/menu_fundraising_icon</item>
-        <item>@drawable/menu_admin_icon</item>
+        <item>@drawable/menu_leave_group_icon</item>
     </array>
 
     <array name="icons_left_menu_highlight">
@@ -25,6 +25,18 @@
         <item>@drawable/schedule2</item>
         <item>@drawable/schedule2</item>
         <item>@drawable/schedule2</item>
+        <item>@drawable/schedule2</item>
+    </array>
+    
+    <array name="admin_items_left_menu">
+        <item>@string/admin_group_info_item</item>
+    </array>
+    
+    <array name="admin_icons_left_menu">
+        <item>@drawable/menu_home_icon</item>
+    </array>
+
+    <array name="admin_icons_left_menu_highlight">
         <item>@drawable/schedule2</item>
     </array>
 </resources>

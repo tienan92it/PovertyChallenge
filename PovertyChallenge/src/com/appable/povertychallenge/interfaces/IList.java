@@ -22,6 +22,10 @@ public interface IList<E> {
 	public void removeEntry(int position);
 
 	public void addEntries(ArrayList<E> entries);
+	
+	public void insertEntry(int position, E entry);
+	
+	public void insertEntries(int position, ArrayList<E> entries);
 
 	public ArrayList<E> getEntries();
 
